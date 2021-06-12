@@ -42,9 +42,15 @@ public class ExemploOrdenacaoMap {
         Set<Map.Entry<String, Livro>> meusLivros3 = new TreeSet<>(new ComparatorNome());
         meusLivros3.addAll(meusLivros.entrySet());
         for (Map.Entry<String, Livro> livro : meusLivros3)
-            System.out.println(livro.getKey() + " - " + livro.getValue().getNome());
+            System.out.println(livro.getKey() + " - " + livro.getValue().getNome()
+                    + " - pages: " + livro.getValue().getPaginas());
 
-//        System.out.println("--\tOrdem número de página\t--"); //Pra você
+        System.out.println("--\tOrdem número de página\t--"); //Pra você
+        Set<Map.Entry<String, Livro>> meusLivros4 = new TreeSet<>(new ComparatorNumberPage());
+        meusLivros4.addAll(meusLivros3);
+        for (Map.Entry<String, Livro> livro : meusLivros4) {
+            System.out.println("Livro: " + livro.getKey() + " - Páginas: " + livro.getValue().getPaginas());
+        }
 
     }
 }
