@@ -18,24 +18,19 @@ Se a pessoa responder positivamente a 2 questões ela deve ser classificada como
 public class ExercicioProposto02 {
     public static void main(String[] args) {
         List<String> respostas = new ArrayList<>();
+        List<String> perguntas = new ArrayList<>(){{
+            add("\nTelefonou para vítima? ");
+            add("Esteve no local do crime? ");
+            add("Mora perto da vítima? ");
+            add("Devia para vítima? ");
+            add("Já trabalhou com a vítima? ");
+        }};
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Perguntas: ");
-        System.out.print("\nTelefonou para vítima? ");
-        String resposta = scanner.next();
-        respostas.add(resposta.toLowerCase());
-        System.out.print("Esteve no local do crime? ");
-        resposta = scanner.next();
-        respostas.add(resposta.toLowerCase());
-        System.out.print("Mora perto da vítima? ");
-        resposta = scanner.next();
-        respostas.add(resposta.toLowerCase());
-        System.out.print("Devia para vítima? ");
-        resposta = scanner.next();
-        respostas.add(resposta.toLowerCase());
-        System.out.print("Já trabalhou com a vítima? ");
-        resposta = scanner.next();
-        respostas.add(resposta.toLowerCase());
+        for (String pergunta : perguntas) {
+            System.out.print(pergunta);
+            respostas.add(scanner.next());
+        };
 
         System.out.println(respostas);
 
