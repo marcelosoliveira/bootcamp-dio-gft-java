@@ -18,12 +18,12 @@ class GeradorPDF extends Thread {
     @Override
     public void run() {
         try {
-            System.out.println("Iniciar geração de PDF");
+            System.out.println("Gerando PDF");
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("PDF Gerado");
+        System.out.println("\nPDF Gerado");
     }
 }
 
@@ -37,14 +37,15 @@ class BarraDeCarregamento extends Thread {
 
     @Override
     public void run() {
+        System.out.print("Loading ");
         while (true){
             try {
-                Thread.sleep(500);
+                Thread.sleep(100);
 
                 if (!iniciarGeradorPdf.isAlive()){
                     break;
                 }
-                System.out.println("Loading ... ");
+                System.out.print("#");
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
