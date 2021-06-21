@@ -34,4 +34,8 @@ public class PersonUtils {
                 .phones(Collections.singletonList(PhoneUtils.createFakeEntity()))
                 .build();
     }
+
+    public static String asJsonString(PersonDTO personDTO) {
+        return personDTO.toString();
+    }
 }

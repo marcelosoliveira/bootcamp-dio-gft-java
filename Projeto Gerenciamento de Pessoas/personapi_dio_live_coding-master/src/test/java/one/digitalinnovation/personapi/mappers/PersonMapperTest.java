@@ -1,10 +1,10 @@
-package one.digitalinnovation.personapi.mapper;
+package one.digitalinnovation.personapi.mappers;
 
-import one.digitalinnovation.personapi.dto.mapper.PersonMapper;
+import one.digitalinnovation.personapi.mapper.PersonMapper;
 import one.digitalinnovation.personapi.dto.request.PersonDTO;
 import one.digitalinnovation.personapi.dto.request.PhoneDTO;
-import one.digitalinnovation.personapi.entities.Person;
-import one.digitalinnovation.personapi.entities.Phone;
+import one.digitalinnovation.personapi.entity.Person;
+import one.digitalinnovation.personapi.entity.Phone;
 import one.digitalinnovation.personapi.utils.PersonUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
