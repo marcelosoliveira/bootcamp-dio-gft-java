@@ -1,11 +1,12 @@
-package one.digitalinnovation.personapi.services;
+package one.digitalinnovation.personapi.service;
 
-import one.digitalinnovation.personapi.dto.mapper.PersonMapper;
 import one.digitalinnovation.personapi.dto.request.PersonDTO;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
-import one.digitalinnovation.personapi.entities.Person;
+import one.digitalinnovation.personapi.entity.Person;
 import one.digitalinnovation.personapi.exception.PersonNotFoundException;
-import one.digitalinnovation.personapi.repositories.PersonRepository;
+import one.digitalinnovation.personapi.mapper.PersonMapper;
+import one.digitalinnovation.personapi.repository.PersonRepository;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -46,9 +47,9 @@ public class PersonServiceTest {
         when(personMapper.toModel(personDTO)).thenReturn(expectedSavedPerson);
         when(personRepository.save(any(Person.class))).thenReturn(expectedSavedPerson);
 
-        MessageResponseDTO successMessage = personService.create(personDTO);
+        MessageResponseDTO successMessage = personService.createPerson(personDTO);
 
-        assertEquals("Person successfully created with ID 1", successMessage.getMessage());
+        assertEquals("Created person with ID 1", successMessage.getMessage());
     }
 
     @Test
@@ -110,7 +111,7 @@ public class PersonServiceTest {
         when(personMapper.toModel(updatePersonDTORequest)).thenReturn(expectedPersonUpdated);
         when(personRepository.save(any(Person.class))).thenReturn(expectedPersonUpdated);
 
-        MessageResponseDTO successMessage = personService.update(updatedPersonId, updatePersonDTORequest);
+        MessageResponseDTO successMessage = personService.updateById(updatedPersonId, updatePersonDTORequest);
 
         assertEquals("Person successfully updated with ID 2", successMessage.getMessage());
     }
@@ -126,11 +127,11 @@ public class PersonServiceTest {
         when(personRepository.findById(invalidPersonId))
                 .thenReturn(Optional.ofNullable(any(Person.class)));
 
-        assertThrows(PersonNotFoundException.class, () -> personService.update(invalidPersonId, updatePersonDTORequest));
+        assertThrows(PersonNotFoundException.class, () -> personService.updateById(invalidPersonId, updatePersonDTORequest));
     }
 
     @Test
-    void testGivenValidPersonIdThenReturnSuccesOnDelete() throws PersonNotFoundException {
+    void testGivenValidPersonIdThenReturnSuccessOnDelete() throws PersonNotFoundException {
         var deletedPersonId = 1L;
         Person expectedPersonToDelete = createFakeEntity();
 
@@ -141,7 +142,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    void testGivenInvalidPersonIdThenReturnSuccesOnDelete() throws PersonNotFoundException {
+    void testGivenInvalidPersonIdThenReturnSuccessOnDelete() throws PersonNotFoundException {
         var invalidPersonId = 1L;
 
         when(personRepository.findById(invalidPersonId))

@@ -55,7 +55,7 @@ public class PersonControllerTest {
         PersonDTO expectedPersonDTO = createFakeDTO();
         MessageResponseDTO expectedResponseMessage = createMessageResponse("Person successfully created with ID", 1L);
 
-        when(personService.create(expectedPersonDTO)).thenReturn(expectedResponseMessage);
+        when(personService.createPerson(expectedPersonDTO)).thenReturn(expectedResponseMessage);
 
         mockMvc.perform(post(PEOPLE_API_URL_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -116,7 +116,7 @@ public class PersonControllerTest {
         PersonDTO expectedPersonDTO = createFakeDTO();
         MessageResponseDTO expectedResponseMessage = createMessageResponse("Person successfully updated with ID", 1L);
 
-        when(personService.update(expectedValidId, expectedPersonDTO)).thenReturn(expectedResponseMessage);
+        when(personService.updateById(expectedValidId, expectedPersonDTO)).thenReturn(expectedResponseMessage);
 
         mockMvc.perform(put(PEOPLE_API_URL_PATH + "/" + expectedValidId)
                 .contentType(MediaType.APPLICATION_JSON)
